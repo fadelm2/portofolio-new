@@ -82,7 +82,7 @@ const Navbar = () => {
           href="/"
           className="text-sm bg-black rounded-md p-1 font-semibold flex items-center justify-center"
         >
-          <span className="text-white mr-1">Lama</span>
+          <span className="text-white mr-1">Fadel</span>
           <span className="w-12 h-8 rounded bg-white text-black flex items-center justify-center">
             .dev
           </span>
@@ -90,23 +90,11 @@ const Navbar = () => {
       </div>
       {/* SOCIAL */}
       <div className="hidden md:flex gap-4 w-1/3">
-        <Link href="/">
-          <Image src="/github.png" alt="" width={24} height={24} />
+        <Link href="https://github.com/fadelm2" target="_blank" rel="noopener noreferrer">
+          <Image src="/github.png" alt="GitHub" width={24} height={24} />
         </Link>
-        <Link href="/">
-          <Image src="/dribbble.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="/">
-          <Image src="/instagram.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="/">
-          <Image src="/facebook.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="/">
-          <Image src="/pinterest.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="/">
-          <Image src="/linkedin.png" alt="" width={24} height={24} />
+        <Link href="https://www.linkedin.com/in/fadel-muhammad-842bb4153/" target="_blank" rel="noopener noreferrer">
+          <Image src="/linkedin.png" alt="LinkedIn" width={24} height={24} />
         </Link>
       </div>
       {/* RESPONSIVE MENU */}
