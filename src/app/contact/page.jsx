@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactPage = () => {
   const [success, setSuccess] = useState(false);
@@ -9,28 +9,49 @@ const ContactPage = () => {
   const text = "Say Hello";
 
   const form = useRef();
+  const recaptchaRef = useRef();
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setError(false);
     setSuccess(false);
 
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID,
-        form.current,
-        process.env.NEXT_PUBLIC_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setSuccess(true);
-          form.current.reset();
+    const token = recaptchaRef.current?.getValue();
+    if (!token) {
+      alert("Please complete the reCAPTCHA!");
+      return;
+    }
+
+    const formData = new FormData(form.current);
+    const user_email = formData.get("user_email");
+    const user_message = formData.get("user_message");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        () => {
-          setError(true);
-        }
-      );
+        body: JSON.stringify({
+          user_email,
+          user_message,
+          token,
+        }),
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+        form.current.reset();
+        recaptchaRef.current?.reset();
+      } else {
+        setError(true);
+        recaptchaRef.current?.reset();
+      }
+    } catch (err) {
+      console.error("Failed to send message:", err);
+      setError(true);
+      recaptchaRef.current?.reset();
+    }
   };
 
   return (
@@ -80,6 +101,12 @@ const ContactPage = () => {
             className="bg-transparent border-b-2 border-b-black outline-none"
           />
           <span>Regards</span>
+          <div className="my-2">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            />
+          </div>
           <button className="bg-purple-200 rounded font-semibold text-gray-600 p-4">
             Send
           </button>
