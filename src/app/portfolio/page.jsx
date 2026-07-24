@@ -29,13 +29,29 @@ const items = [
     img: "/blockchain_escrow.png",
     link: "https://github.com/fadelm2",
   },
+  {
+    id: 4,
+    color: "from-purple-300 to-pink-300",
+    title: "IoT GPS Fleet Tracker",
+    desc: "A real-time vehicle tracking and fleet management system for 100+ cars using Golang, NATS for high-throughput IoT message ingestion, and PostgreSQL for spatial data storage.",
+    img: "/car_monitoring.png",
+    link: "https://github.com/fadelm2",
+  },
+  {
+    id: 5,
+    color: "from-pink-300 to-red-300",
+    title: "Real Estate & Property Platform",
+    desc: "A comprehensive property management platform featuring interactive listings for buying, selling, and renting properties, payment tracking systems, and client follow-up CRM integrations.",
+    img: "/real_estate.png",
+    link: "https://github.com/fadelm2",
+  },
 ];
 
 const PortfolioPage = () => {
   const ref = useRef();
 
   const { scrollYProgress } = useScroll({ target: ref });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-83.33%"]);
 
   return (
     <motion.div
@@ -44,7 +60,7 @@ const PortfolioPage = () => {
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <div className="h-[500vh] relative" ref={ref}>
+      <div className="h-[700vh] relative" ref={ref}>
         <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl text-center">
           My Works
         </div>

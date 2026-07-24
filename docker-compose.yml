@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fadel-portfolio
+    restart: always
+    ports:
+      - "9877:9877"
+    environment:
+      - PORT=9877
+      - HOSTNAME=0.0.0.0
