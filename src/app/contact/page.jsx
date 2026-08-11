@@ -8,7 +8,7 @@ const ContactPage = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const text = "Say Hello";
+  const text = "Let's Build Together";
 
   const form = useRef();
   const recaptchaRef = useRef();
