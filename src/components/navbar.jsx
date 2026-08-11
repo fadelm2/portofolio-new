@@ -89,12 +89,20 @@ const Navbar = () => {
         </Link>
       </div>
       {/* SOCIAL */}
-      <div className="hidden md:flex gap-4 w-1/3">
-        <Link href="https://github.com/fadelm2" target="_blank" rel="noopener noreferrer">
+      <div className="hidden md:flex items-center gap-4 w-1/3">
+        <Link href="https://github.com/fadelm2" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
           <Image src="/github.png" alt="GitHub" width={24} height={24} />
         </Link>
-        <Link href="https://www.linkedin.com/in/fadel-muhammad-842bb4153/" target="_blank" rel="noopener noreferrer">
+        <Link href="https://www.linkedin.com/in/fadel-muhammad-842bb4153/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
           <Image src="/linkedin.png" alt="LinkedIn" width={24} height={24} />
+        </Link>
+        <Link
+          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281234567890"}?text=Hi%20Fadel,%20I'm%20interested%20in%20discussing%20a%20project!`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:opacity-80 transition-opacity"
+        >
+          <Image src="/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
         </Link>
       </div>
       {/* RESPONSIVE MENU */}
@@ -134,9 +142,25 @@ const Navbar = () => {
                 className=""
                 key={link.title}
               >
-                <Link href={link.url}>{link.title}</Link>
+                <Link href={link.url} onClick={() => setOpen(false)}>{link.title}</Link>
               </motion.div>
             ))}
+            {/* MOBILE SOCIAL LINKS */}
+            <motion.div variants={listItemVariants} className="flex gap-6 mt-4 items-center">
+              <Link href="https://github.com/fadelm2" target="_blank" rel="noopener noreferrer">
+                <Image src="/github.png" alt="GitHub" width={32} height={32} className="invert" />
+              </Link>
+              <Link href="https://www.linkedin.com/in/fadel-muhammad-842bb4153/" target="_blank" rel="noopener noreferrer">
+                <Image src="/linkedin.png" alt="LinkedIn" width={32} height={32} />
+              </Link>
+              <Link
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281234567890"}?text=Hi%20Fadel,%20I'm%20interested%20in%20discussing%20a%20project!`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src="/whatsapp.svg" alt="WhatsApp" width={32} height={32} />
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </div>
